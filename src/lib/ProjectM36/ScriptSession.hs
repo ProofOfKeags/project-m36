@@ -148,14 +148,14 @@ initScriptSession ghcPkgPaths = do
 #endif
 
 #if __GLASGOW_HASKELL__ >= 806
-          ideclExt = NoExt,
+          ideclExt = NoExtField,
 #endif
           ideclName      = noLoc mn,
           ideclPkgQual   = Nothing,
           ideclSource    = False,
           ideclSafe      = True,
           ideclImplicit  = False,
-          ideclQualified = isJust mQual,
+          ideclQualified = maybe NotQualified (const QualifiedPre) mQual,
           ideclAs        = mQual,
           ideclHiding    = Nothing
           }
